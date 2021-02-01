@@ -8,6 +8,7 @@
 #include <env>
 
 #include "core/sql/connection.pwn"
+#include "core/sql/setup.pwn"
 
 main(){
     print("Gamemode Started!");

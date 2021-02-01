@@ -19,5 +19,5 @@ Don't worry the game setting is not limited to one city, we expect to have playe
 ### P.S.
 
 - Since vehicles are widely available through-out the map, we will not utilize teleportations, it is only for administration purposes. BTW there will be jetpacks \**wink*\*.
-- Tutorials & Walkthroughs will be available with our Github [wiki page](wiki/home.md). This will include on how to start, earning cash, socializing etc...
+- Tutorials & Walkthroughs will be available with our Github [wiki page](https://github.com/MySekwel/Open-MMORPG/wiki). This will include on how to start, earning cash, socializing etc...
 - Forum & Website will be available soon.
