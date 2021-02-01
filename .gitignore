@@ -47,4 +47,11 @@ samp.ban
 # Common files
 #
 
+.vscode/
 *.sublime-workspace
+
+#
+# API TOkens
+#
+
+.env

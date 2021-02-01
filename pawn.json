@@ -7,7 +7,9 @@
 		"sampctl/samp-stdlib",
 		"pawn-lang/YSI-Includes@5.x",
 		"pBlueG/SA-MP-MySQL:R41-4",
-		"PatrickGTR/MySQL-Prepared-Statements@master"
+		"PatrickGTR/MySQL-Prepared-Statements@master",
+		"dakyskye/pawn-env:1.1.1",
+		"mergevos/bcrypt-samp:2.3.0"
 	],
 	"local": true,
 	"runtime": {
