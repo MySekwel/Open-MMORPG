@@ -1,3 +1,11 @@
+/**
+* -----------------------
+* MODULE: Main
+* DESCRIPTION: Main module imports all the modules to be compiled into a binary, "main.amx".
+* PATH: [gamemodes/main.pwn]
+* TODO: Nothing Yet
+* -----------------------
+**/
 #include <a_samp>
 #include <a_mysql>
 
@@ -5,10 +13,8 @@
 #include <YSI_Coding\y_va>
 #include <YSI_Coding\y_inline>
 #include <mysql_prepared>
-#include <env>
 
 #include "core/sql/connection.pwn"
-#include "core/sql/setup.pwn"
 
 main(){
     print("Gamemode Started!");
