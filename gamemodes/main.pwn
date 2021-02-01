@@ -1,4 +1,4 @@
 
 main(){
-print("Test");
+        print("Test");
 }
