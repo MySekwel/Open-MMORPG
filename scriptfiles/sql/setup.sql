@@ -8,22 +8,8 @@ users(
     user_password VARCHAR(60),
     user_ip VARCHAR(15),
     PRIMARY KEY(user_id),
-    UNIQUE KEY(user_name));
-
-CREATE TABLE
-IF NOT EXISTS
-inventory(
-    user_id INT NOT NULL AUTO_INCREMENT,
-    inv_cash INT(11),
-    inv_counterfeit_cash INT(11),
-    inv_medkit INT(11),
-    inv_bandage INT(11),
-    PRIMARY KEY (user_id),
-    FOREIGN KEY (user_id)
-    REFERENCES
-    users(user_id)
-    ON DELETE CASCADE
-    ON UPDATE RESTRICT);
+    UNIQUE KEY(user_name)
+);
 
 CREATE TABLE
 IF NOT EXISTS
@@ -31,20 +17,21 @@ stats(
     user_id INT NOT NULL AUTO_INCREMENT,
     stat_level INT(11),
     stat_exp INT(11),
-    stat_hunger INT(11),
-    stat_thirst INT(11),
-    stat_health INT(11),
-    stat_armor INT(11),
-    stat_stamina INT(11),
-    stat_strength INT(11),
-    stat_speed INT(11),
-    stat_weapon_skill INT(11),
+    stat_hunger FLOAT,
+    stat_thirst FLOAT,
+    stat_health FLOAT,
+    stat_armor FLOAT,
+    stat_stamina FLOAT,
+    stat_strength FLOAT,
+    stat_speed FLOAT,
+    stat_weapon_skill FLOAT,
     PRIMARY KEY (user_id),
     FOREIGN KEY (user_id)
     REFERENCES
     users(user_id)
     ON DELETE CASCADE
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT
+);
 
 CREATE TABLE 
 IF NOT EXISTS 
@@ -66,4 +53,21 @@ class(
     REFERENCES
     users(user_id)
     ON DELETE CASCADE
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT
+);
+
+CREATE TABLE
+IF NOT EXISTS
+inventory(
+    user_id INT NOT NULL AUTO_INCREMENT,
+    inv_cash INT(11),
+    inv_counterfeit_cash INT(11),
+    inv_medkit INT(11),
+    inv_bandage INT(11),
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id)
+    REFERENCES
+    users(user_id)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT
+);

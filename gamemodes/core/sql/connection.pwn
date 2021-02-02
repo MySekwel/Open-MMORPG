@@ -1,3 +1,10 @@
+/**
+* -----------------------
+* MODULE: MySQL Connection
+* DESCRIPTION: Connects to the MySQL Database and sets up the tables needed.
+* PATH: [gamemodes/core/sql/connection.pwn]
+* -----------------------
+**/
 #include <YSI_Coding\y_hooks>
 
 new MySQL:SQL_Handle;
