@@ -7,13 +7,16 @@
 **/
 #include <a_samp>
 #include <a_mysql>
+#include <vector>
 
 #define YSI_YES_HEAP_MALLOC
 #include <YSI_Coding\y_va>
 #include <YSI_Coding\y_inline>
 #include <mysql_prepared>
 
+#include "utils/limits.pwn"
 #include "core/sql/connection.pwn"
+#include "core/user/user.pwn"
 #include "core/sql/authentication.pwn"
 
 main(){

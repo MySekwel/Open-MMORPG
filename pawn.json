@@ -9,7 +9,9 @@
 		"pBlueG/SA-MP-MySQL:R41-4",
 		"PatrickGTR/MySQL-Prepared-Statements@master",
 		"dakyskye/pawn-env:1.1.1",
-		"mergevos/bcrypt-samp:2.3.0"
+		"mergevos/bcrypt-samp:2.3.0",
+		"IllidanS4/PawnPlus:v1.3.2",
+		"BigETI/pawn-vector"
 	],
 	"local": true,
 	"runtime": {
