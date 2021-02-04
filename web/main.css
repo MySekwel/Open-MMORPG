@@ -1,0 +1,100 @@
+/*******************************/
+/*
+  ----
+  BODY
+  ----
+*/
+body{
+  background-color: rgb(61, 4, 63);
+  background-image: url(https://media.giphy.com/media/BHNfhgU63qrks/giphy.gif);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/*******************************/
+/*
+  --------------
+  NAVIGATION BAR
+  --------------
+*/
+nav{
+  background-color: rgba(230, 199, 112, 0.829);
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-top: 5px;
+  padding-bottom: 1px;
+}
+#logo{
+  text-align: center;
+}
+#navpages{
+  background-color: rgba(223, 181, 91, 0.829);
+  margin-left: 5%;
+  margin-right: 5%;
+}
+/*******************************/
+/*
+  ------
+  HEADER
+  ------
+*/
+header{
+  background-color: rgba(230, 199, 112, 0.829);
+  margin-left: 5%;
+  margin-right: 5%;
+}
+/*******************************/
+/*
+  --------------
+  NEWS CONTAINER
+  --------------
+*/
+.News{
+  background-color: rgba(230, 199, 112, 0.829);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 1%;
+  padding: 1%;
+}
+/*******************************/
+/*
+  --------------------------
+  MORE INFORMATION CONTAINER
+  --------------------------
+*/
+.MoreInfo{
+  background-color: rgba(230, 199, 112, 0.829);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 1%;
+  padding: 1%;
+}
+#Others{
+  background-color: rgba(230, 199, 112, 0.829);
+  margin: 1%;
+}
+/*******************************/
+/*
+  -----------
+  CONTACTS ID
+  -----------
+*/
+#Contacts{
+  background-color: rgba(230, 199, 112, 0.829);
+  margin: 1%;
+}
+/*******************************/
+/*
+  ------
+  FOOTER
+  ------
+*/
+footer{
+  background-color: cornsilk;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+/*******************************/
