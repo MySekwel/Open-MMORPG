@@ -7,6 +7,8 @@
 **/
 #include <YSI_Coding\y_hooks>
 
+#define SERVER_SALT "saltbae"
+
 new MySQL:SQL_Handle;
 
 hook OnGameModeInit(){

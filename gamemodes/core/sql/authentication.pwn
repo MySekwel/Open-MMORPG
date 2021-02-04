@@ -1,8 +1,8 @@
 #include <YSI_Coding\y_hooks>
 
 static
-    Statement:InsertPlayer,
-    Statement:LoadPlayer;
+    Statement:Statement_Insert_Player,
+    Statement:Statement_Load_Player;
 
 hook OnGameModeInit(){
     static const SQL_Insert_Query[] = "\
@@ -55,7 +55,7 @@ hook OnGameModeInit(){
         ) \
         VALUES(?, ?, ?, ?); \
     ";
-    InsertPlayer = MySQL_PrepareStatement(SQL_Handle, SQL_Insert_Query);
+    Statement_Insert_Player = MySQL_PrepareStatement(SQL_Handle, SQL_Insert_Query);
 
     static const SQL_Load_Query[] = "\
         SELECT \
@@ -96,53 +96,79 @@ hook OnGameModeInit(){
         INNER JOIN class as c \
         ON s.user_id=c.user_id \
         INNER JOIN inventory as i \
-        ON c.user_id=i.user_id; \
+        ON c.user_id=i.user_id \
+        \
+        WHERE u.user_name=?; \
     ";
-    LoadPlayer = MySQL_PrepareStatement(SQL_Handle, SQL_Load_Query);
+    Statement_Load_Player = MySQL_PrepareStatement(SQL_Handle, SQL_Load_Query);
     return 1;
 }
 
 hook OnPlayerConnect(playerid){
+    inline OnPlayerRowCheck(){
+        MySQL_BindResult(Statement_Load_Player, 3, string);
+        if(MySQL_Statement_FetchRow(Statement_Load_Player)){
+            Player_Show_Login(playerid);
+        }
+        else{
+            Player_Show_Register(playerid);
+        }
+        Player_Show_Login(playerid);
+    }
+    MySQL_Bind(Statement_Load_Player, 0, GetPlayerNameEx(playerid));
+    MySQL_ExecuteThreaded_Inline(Statement_Load_Player, using inline OnPlayerRowCheck);
     CreatePlayer(playerid);
     return 1;
 }
 
+Player_Show_Login(playerid){
+    inline OnPlayerRowCheck(){
+        static string[60] = "None";
+        MySQL_BindResult(Statement_Load_Player, 3, string);
+        strcat(string, SERVER_SALT);
+    }
+    MySQL_ExecuteThreaded_Inline(Statement_Load_Player, using inline OnPlayerRowCheck);
+}
+
+Player_Show_Register(playerid){return playerid;}
+
+
 CreatePlayer(playerid){
-    MySQL_ExecuteThreaded(LoadPlayer);
     // [users] table
-    MySQL_Bind(InsertPlayer, 0, GetPlayerNameEx(playerid));
-    MySQL_Bind(InsertPlayer, 1, User_Discord_ID[playerid]);
-    MySQL_Bind(InsertPlayer, 2, User_Password[playerid]);
-    MySQL_Bind(InsertPlayer, 3, User_IP[playerid]);
+    MySQL_Bind(Statement_Insert_Player, 0, GetPlayerNameEx(playerid));
+    MySQL_Bind(Statement_Insert_Player, 1, Player_Discord_ID[playerid]);
+    MySQL_Bind(Statement_Insert_Player, 2, Player_Password[playerid]);
+    MySQL_Bind(Statement_Insert_Player, 3, Player_IP[playerid]);
     // [stats] table
-    MySQL_BindInt(InsertPlayer, 4, User_Level[playerid]);
-    MySQL_BindInt(InsertPlayer, 5, User_EXP[playerid]);
-    MySQL_BindFloat(InsertPlayer, 6, User_Hunger[playerid]);
-    MySQL_BindFloat(InsertPlayer, 7, User_Thirst[playerid]);
-    MySQL_BindFloat(InsertPlayer, 8, User_Health[playerid]);
-    MySQL_BindFloat(InsertPlayer, 9, User_Armor[playerid]);
-    MySQL_BindFloat(InsertPlayer, 10, User_Stamina[playerid]);
-    MySQL_BindFloat(InsertPlayer, 11, User_Strength[playerid]);
-    MySQL_BindFloat(InsertPlayer, 12, User_Speed[playerid]);
-    MySQL_BindFloat(InsertPlayer, 13, User_Weapon_Skill[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 4, Player_Level[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 5, Player_EXP[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 6, Player_Hunger[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 7, Player_Thirst[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 8, Player_Health[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 9, Player_Armor[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 10, Player_Stamina[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 11, Player_Strength[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 12, Player_Speed[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 13, Player_Weapon_Skill[playerid]);
     // [class] table
-    MySQL_BindFloat(InsertPlayer, 14, User_Position_X[playerid]);
-    MySQL_BindFloat(InsertPlayer, 15, User_Position_Y[playerid]);
-    MySQL_BindFloat(InsertPlayer, 16, User_Position_Z[playerid]);
-    MySQL_BindFloat(InsertPlayer, 17, User_Position_A[playerid]);
-    MySQL_BindInt(InsertPlayer, 18, User_Position_Interior[playerid]);
-    MySQL_BindInt(InsertPlayer, 19, User_Position_World[playerid]);
-    MySQL_Bind(InsertPlayer, 20, User_Class[playerid]);
-    MySQL_Bind(InsertPlayer, 21, User_Nationality[playerid]);
-    MySQL_Bind(InsertPlayer, 22, User_Gender[playerid]);
-    MySQL_BindInt(InsertPlayer, 23, User_Age[playerid]);
-    MySQL_Bind(InsertPlayer, 24, User_Accent[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 14, Player_Position_X[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 15, Player_Position_Y[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 16, Player_Position_Z[playerid]);
+    MySQL_BindFloat(Statement_Insert_Player, 17, Player_Position_A[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 18, Player_Position_Interior[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 19, Player_Position_World[playerid]);
+    MySQL_Bind(Statement_Insert_Player, 20, Player_Class[playerid]);
+    MySQL_Bind(Statement_Insert_Player, 21, Player_Nationality[playerid]);
+    MySQL_Bind(Statement_Insert_Player, 22, Player_Gender[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 23, Player_Age[playerid]);
+    MySQL_Bind(Statement_Insert_Player, 24, Player_Accent[playerid]);
     // [inventory] table
-    MySQL_BindInt(InsertPlayer, 25, User_Cash[playerid]);
-    MySQL_BindInt(InsertPlayer, 26, User_Counterfeit_Cash[playerid]);
-    MySQL_BindInt(InsertPlayer, 27, User_Medkit[playerid]);
-    MySQL_BindInt(InsertPlayer, 28, User_Bandage[playerid]);
-    MySQL_ExecuteThreaded(InsertPlayer);
+    MySQL_BindInt(Statement_Insert_Player, 25, Player_Cash[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 26, Player_Counterfeit_Cash[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 27, Player_Medkit[playerid]);
+    MySQL_BindInt(Statement_Insert_Player, 28, Player_Bandage[playerid]);
+    MySQL_ExecuteThreaded(Statement_Insert_Player);
+    MySQL_StatementClose(Statement_Insert_Player);
 }
 
 GetPlayerNameEx(playerid){

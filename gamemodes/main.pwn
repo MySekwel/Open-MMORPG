@@ -19,11 +19,11 @@
 #include "core/user/user.pwn"
 #include "core/sql/authentication.pwn"
 
-main(){
-    print("Gamemode Started!");
-}
-
 public OnGameModeInit(){
     print("Gamemode Initializing...");
     return 1;
+}
+
+main(){
+    print("Gamemode Started!");
 }
