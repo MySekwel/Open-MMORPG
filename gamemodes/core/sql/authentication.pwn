@@ -106,9 +106,11 @@ hook OnGameModeInit(){
 
 hook OnPlayerConnect(playerid){
     inline OnPlayerRowCheck(){
+        static string[60];
         MySQL_BindResult(Statement_Load_Player, 3, string);
+        strcat(string, SERVER_SALT);
         if(MySQL_Statement_FetchRow(Statement_Load_Player)){
-            Player_Show_Login(playerid);
+            Player_Show_Login(playerid, string);
         }
         else{
             Player_Show_Register(playerid);
@@ -121,13 +123,8 @@ hook OnPlayerConnect(playerid){
     return 1;
 }
 
-Player_Show_Login(playerid){
-    inline OnPlayerRowCheck(){
-        static string[60] = "None";
-        MySQL_BindResult(Statement_Load_Player, 3, string);
-        strcat(string, SERVER_SALT);
-    }
-    MySQL_ExecuteThreaded_Inline(Statement_Load_Player, using inline OnPlayerRowCheck);
+Player_Show_Login(playerid, const password[]){
+
 }
 
 Player_Show_Register(playerid){return playerid;}
