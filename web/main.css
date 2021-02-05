@@ -6,7 +6,7 @@
 */
 body{
   background-color: rgb(61, 4, 63);
-  background-image: url(https://media.giphy.com/media/BHNfhgU63qrks/giphy.gif);
+  background-image: url(images/background.giff);
 
   height: 100%;
 
@@ -14,6 +14,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 /*******************************/
 /*
   --------------
@@ -24,11 +25,18 @@ nav{
   background-color: rgba(230, 199, 112, 0.829);
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 1%;
   padding-top: 5px;
   padding-bottom: 1px;
 }
 #logo{
   text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  nav, img{
+    width: 90%;
+    height: auto;
+  }
 }
 #navpages{
   background-color: rgba(223, 181, 91, 0.829);
@@ -45,6 +53,8 @@ header{
   background-color: rgba(230, 199, 112, 0.829);
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 1%;
+  padding: 1%;
 }
 /*******************************/
 /*
@@ -96,5 +106,8 @@ footer{
   background-color: cornsilk;
   margin-left: 5%;
   margin-right: 5%;
+  padding-right: 5%;
+  text-align: right;
 }
+
 /*******************************/
