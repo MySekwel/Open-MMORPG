@@ -103,11 +103,14 @@ header{
   ------
 */
 footer{
-  background-color: cornsilk;
-  margin-left: 5%;
-  margin-right: 5%;
-  padding-right: 5%;
-  text-align: right;
+  background-color: #2A3344;
+  color: white;
+  padding: 18px;
+  position: absolute;
+  opacity: .7;
+  left: 5%;
+  right: 5%;
+  border-width: 2px;
 }
 
 /*******************************/
