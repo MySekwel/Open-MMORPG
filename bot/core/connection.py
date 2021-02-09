@@ -3,6 +3,7 @@ from utils import settings
 
 SQL_Handle = connector.connect(
     host=settings.SQL_HOST,
+    database=settings.SQL_DATABASE,
     user=settings.SQL_USER,
     password=settings.SQL_PASSWORD
 )
