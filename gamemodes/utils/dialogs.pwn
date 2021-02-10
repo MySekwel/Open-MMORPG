@@ -1,0 +1,3 @@
+enum{
+    DIALOG_REGISTER,
+};

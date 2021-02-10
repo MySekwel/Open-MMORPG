@@ -104,7 +104,7 @@ hook OnGameModeInit(){
     return 1;
 }
 
-hook OnPlayerConnect(playerid){
+YCMD:register(playerid, params[], help){
     inline OnPlayerRowCheck(){
         static string[60];
         MySQL_BindResult(Statement_Load_Player, 3, string);
@@ -115,7 +115,6 @@ hook OnPlayerConnect(playerid){
         else{
             Player_Show_Register(playerid);
         }
-        Player_Show_Login(playerid);
     }
     MySQL_Bind(Statement_Load_Player, 0, GetPlayerNameEx(playerid));
     MySQL_ExecuteThreaded_Inline(Statement_Load_Player, using inline OnPlayerRowCheck);
@@ -124,10 +123,17 @@ hook OnPlayerConnect(playerid){
 }
 
 Player_Show_Login(playerid, const password[]){
-
+    printf("Player ID: %d | Player Password: %s", playerid, password);
+    return 1;
 }
 
-Player_Show_Register(playerid){return playerid;}
+Player_Show_Register(playerid){
+    static const caption[] = "Register this username";
+    static const desc[] = "Please enter your desired password in the input box.";
+    ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, caption, desc, "Register", "Exit");
+    CreatePlayer(playerid);
+    return 1;
+}
 
 
 CreatePlayer(playerid){

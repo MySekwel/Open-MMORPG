@@ -12,9 +12,12 @@
 #define YSI_YES_HEAP_MALLOC
 #include <YSI_Coding\y_va>
 #include <YSI_Coding\y_inline>
+#include <YSI_Visual\y_commands>
+#include <YSI_Visual\y_dialog>
 #include <mysql_prepared>
 
 #include "utils/limits.pwn"
+#include "utils/dialogs.pwn"
 #include "core/sql/connection.pwn"
 #include "core/user/user.pwn"
 #include "core/sql/authentication.pwn"
